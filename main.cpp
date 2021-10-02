@@ -1,103 +1,28 @@
 #include <iostream>
-#include "include/algorithms.h"
-#include <chrono>
 #include <cmath>
-
-#define RAND_EXPERIMENT_REPS 5
-#define FUNCS_COUNT 4
+#include "include/algorithms.h"
+#include "include/experiment.h"
 
 using namespace std;
 
-void printArray(int*, int);
-void randArrFill(int*, int, int);
-void printRes(long *res);
-
-void experiment();
-
-long* randomArr(int size);
-void ascendingArr();
-void descendingArr();
-void repetitiveArr();
-
-void basicExample();
-
-string FUNCS[] = {"Selection Sort", "Insertion Sort",
-                  "Shell Sort    ", "Merge Sort    "};
-void (*sort_algs[])(int*, int) = { selection_sort, insertion_sort, shell_sort };
+void test();
 
 int main(){
     srand(time(0));
-    //basicExample();
-    experiment();
+    //test();
+    performExperiment();
 
     return 0;
 }
 
+void test(){
 
-void printArray(int arr[], int size) {
-    for (int i = 0; i < size; i++)
-        cout << arr[i] << " ";
-    cout << endl;
-}
-
-void randArrFill(int *arr, int size, int max){
-    for(int i = 0; i < size; i++){
-        arr[i] = rand()%max;
-    }
-}
-
-void experiment(){
-    for(int i = 7; i <= 15; i++){
-        long *randomArrRes = randomArr(pow(2, i));
-        printRes(randomArrRes);
-        cout << endl;
-        ascendingArr();
-        descendingArr();
-        repetitiveArr();
-        free(randomArrRes);
-    }
-}
-
-long* randomArr(int size){
-    int arr[size];
-    long *results = (long*) malloc(sizeof(long) * 4);
-    *results = 0, *(results+1) = 0, *(results+2) = 0, *(results+3) = 0;
-
-    for(int i = 0; i < RAND_EXPERIMENT_REPS; i++){
-        randArrFill(arr, size, size+1);
-
-        for(int j = 0; j < FUNCS_COUNT-1; j++){
-            auto start = chrono::high_resolution_clock::now(); 
-            (sort_algs[j])(arr, size);
-            auto stop = chrono::high_resolution_clock::now();
-
-            long duration = (chrono::duration_cast<chrono::microseconds>(stop - start)).count();
-            results[j] += duration;
-        }
-
-        auto start = chrono::high_resolution_clock::now(); 
-        merge_sort(arr, 0, size-1);
-        auto stop = chrono::high_resolution_clock::now();
-
-        long duration = (chrono::duration_cast<chrono::microseconds>(stop - start)).count();
-        results[3] += duration;
-    }
-    for(int i = 0; i < FUNCS_COUNT; i++)
-        results[i] /= RAND_EXPERIMENT_REPS;
-
-    return results;
-}
-void ascendingArr(){
-
-}
-void descendingArr(){
-
-}
-void repetitiveArr(){
-
-}
-
-void printRes(long *res){
-    for(int i = 0; i < FUNCS_COUNT; i++)
-        cout << FUNCS[i] << ": " << res[i] << endl;;
+    int arr1[7] = {1, 3, 5, 2, 5, 4, 1};
+    int arr2[7] = {8, 4, 6, 3, 2, 1, 4};
+    int arr3[7] = {1, 2, 3, 4, 5, 6, 7};
+    int arr4[7] = {7 ,6, 5, 4, 3, 2, 1};
+    cout << shell_sort_verb(arr1, 7) << endl;
+    cout << shell_sort_verb(arr2, 7) << endl;
+    cout << shell_sort_verb(arr3, 7) << endl;
+    cout << shell_sort_verb(arr4, 7) << endl;
 }
