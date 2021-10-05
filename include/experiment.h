@@ -14,8 +14,9 @@ void randLowArr(int *arr, int size);
 void printRes(const long res[FUNCS_COUNT][EXPERIMENTS_COUNT][2]);
 void printArray(int* arr, int size);
 
-void performExperiment();
 void expsFuncs(long res[FUNCS_COUNT][EXPERIMENTS_COUNT][2], const int size);
+void performExperiment(std::string resOutputFile);
+int clearFile(std::string filename);
 
 extern void (*fill_types[EXPERIMENTS_COUNT])(int*, int);
 

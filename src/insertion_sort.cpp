@@ -6,6 +6,7 @@ void insertion_sort(int* arr, int size){
                 arr[j] = arr[j-1];
                 arr[j-1] = temp;
             }
+            else break;     // early break
         }
     }
 }
@@ -19,6 +20,7 @@ long insertion_sort_verb(int* arr, int size){
                 arr[j] = arr[j-1];
                 arr[j-1] = temp;
             }
+            else break;     // early break
         }
     }
     return comps;

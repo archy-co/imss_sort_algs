@@ -11,8 +11,6 @@ const int FILL_TYPE_EXPERIMENT_REPS[EXPERIMENTS_COUNT] = { 5, 1, 1, 3 }; // diff
 const std::string experiments_names[] = {"Random", "Ascending",
                                        "Descending", "Random [1,3]"};
 
-
-
 int appendRes(string filename, const long res[EXPERIMENTS_COUNT][FUNCS_COUNT][2]) {
     fstream result;
 
@@ -36,10 +34,6 @@ int appendRes(string filename, const long res[EXPERIMENTS_COUNT][FUNCS_COUNT][2]
 
     return 0;
 }
-
-
-
-
 
 void randArr(int *arr, int size){
     for(int i = 0; i < size; i++){
@@ -107,15 +101,34 @@ void expsFuncs(long res[EXPERIMENTS_COUNT][FUNCS_COUNT][2], const int size){
     }
 }
 
-void performExperiment(){
+void performExperiment(string resOutputFile){
+    int status = clearFile(resOutputFile);
+    if(status)
+        cout << "Error clearing result output file!!!" << endl;
     for(int i = 7; i <= 15; i++){
-        cout << "****** 2^" << i << " ******" << endl;
+        cout << "********* 2^" << i << " *********" << endl;
         long res[EXPERIMENTS_COUNT][FUNCS_COUNT][2] = {};
         expsFuncs(res, pow(2, i));
         printRes(res);
-        appendRes("data.txt", res);
-        cout << "*****************" << endl << endl;
+        int status = appendRes(resOutputFile, res);
+        if(status)
+            cout << "Error appending to file!" << endl;
+        cout << "***********************" << endl << endl;
     }
+}
+
+
+int clearFile(string filename){
+    fstream result;
+
+    result.open(filename, std::ios_base::out);
+    if (!result.is_open()) {
+        cout << "Failed to open file: file is opened" << filename << '\n';
+        return -1;
+    }
+    result << "";
+
+    return 0;
 }
 
 

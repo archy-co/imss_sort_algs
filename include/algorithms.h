@@ -20,8 +20,8 @@ long merge_verb(int* arr, int l, int m, int r);
 long merge_sort_verb(int* arr, int size);
 long merge_sort_verb(int* arr, int l, int r, long *comps);
 
-const std::string sort_algs_names[] = {"Selection Sort", "Insertion Sort",
-                                       "Merge Sort    ", "Shell Sort    "};
+const std::string sort_algs_names[] = {"Insertion Sort", "Merge Sort    ",
+                                       "Selection Sort", "Shell Sort    "};
 
 extern void (*sort_algs[])(int*, int);
 extern long (*sort_algs_verb[])(int*, int);
