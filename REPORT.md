@@ -11,13 +11,13 @@ Each of the 4 algorithms was ran in all of the 4 cases mentioned above for array
 
 The result of the experiments are graphs, built with **matplotlib**
 
-Note that different algorithms are used to record algorithm time and number of comparison: when recording time, optimized algorithm is used without any rudements, but for number of comparisons slightly modified version of algorithms are used (with suffix `_verb` in the name) with comparisons' counter.
+Note that different algorithms are used to record algorithm time and number of comparison: when recording time, optimized algorithm is used without any rudiments, but for number of comparisons slightly modified version of algorithms are used (with suffix `_verb` in the name) with comparisons' counter.
 
 ## Hardware Specification for Experiments
 Experiments were performed with the following key hardware parameters:
 * CPU: Intel Core i5-10210U CPU @ 1.60GHz, 8 cores
-* MEMORY: SO-DIMM 8GB @ 2666 MHz 
-* OS: Linux (I am using Arch, btw)
+* Memory: SO-DIMM 8GB @ 2666 MHz 
+* OS: Linux (I use Arch, btw)
 
 ## Algorithms
 Following code is written in C++. For more, reffer to **src/insertion_sort.cpp**, **src/merge_sort.cpp**, **src/selection_sort.cpp**, **src/shell_sort.cpp** and related files
@@ -36,7 +36,7 @@ void insertion_sort(int* arr, int size){
 }
 ```
 ### Merge Sort
-##### Merge sort recursice algorithm
+##### Merge sort recursive algorithm
 ``` C++
 void merge_sort(int* arr, int l, int r){
     if(r > l){
@@ -49,8 +49,7 @@ void merge_sort(int* arr, int l, int r){
 ```
 ##### Merge function
 ``` C++
-void merge(int* arr, int l, int m, int r){
-    int arr_l_p = m-l+1, arr_r_p = r-m;
+void merge(int* arr, int l, int m, int r){ int arr_l_p = m-l+1, arr_r_p = r-m;
     int arr_l[arr_l_p], arr_r[arr_r_p];
 
     for(int i = 0; i < arr_l_p; i++)    arr_l[i] = arr[l+i];
@@ -112,7 +111,7 @@ void shell_sort(int* arr, int size){
 ```
 ## Experiments
 `expsFuncs` function performs experiments and writes experiment data to file
-The code below ommits some important nuances such as imports or declaration/definition of some constants and functions. For more, reffer to **src/experiment.cpp**. Algorithms' modifications that count comparisons are implemented in **src/_algorithm_name_.cpp** below the main algorithm in the file.
+The code below omits some important nuances such as imports or declaration/definition of some constants and functions. For more, reffer to **src/experiment.cpp**. Algorithms' modifications that count comparisons are implemented in **src/_algorithm_name_.cpp** below the main algorithm in the file.
 ``` C++
 #define EXPERIMENTS_COUNT 4
 #define FUNCS_COUNT 4
@@ -169,41 +168,25 @@ void expsFuncs(long res[EXPERIMENTS_COUNT][FUNCS_COUNT][2], const int size){
 ```
 #### Results
 ##### Random array
-Selection sort is a bit slower than Insertion sort but generally corelates with it. Next, shell sort. Untill some array size (in the given experiments untill ~2^12) it has less comparisons and has better execution time then merge sort, but since array size = ~2^12 merge sort becomes better and shell sort increases more and more.
+| ![Comparisons](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/0_comp.png) | ![Time](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/0_time.png) |
+| :---: | :---: |
+Selection sort is a bit slower than Insertion sort but generally correlates with it. Next, shell sort. Until some array size (in the given experiments until ~2^12) it has less comparisons and has better execution time then merge sort, but since array size = ~2^12 merge sort becomes better and shell sort increases more and more.
 ##### Sorted array
-Insertion sort always preforms the best in this case, because it has least comparisons and best execution time. Next, shell sort -- it is based on insertion sort so it is also reasonably fast and is 2nd least among all 4 algorithms in time and comparisons number. Then goes merge sort and the worst is selection sort.
+| ![Comparisons](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/1_comp.png) | ![Time](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/1_time.png) |
+| :---: | :---: |
+Insertion sort always preforms the best in this case, because it has least comparisons and best execution time. For arrays of size < 2^8 its execution time is is zero microseconds when run on the diven machine. Next, shell sort -- it is based on insertion sort so it is also reasonably fast and is 2nd least among all 4 algorithms in time and comparisons number. Then goes merge sort and the worst is selection sort.
 ##### Reverse-sorted array
-In this case insertion sort and selection sort have worst execution time and comparisons number which are equal for both, as both will perform n^2 comparisons to sort reverse-ordered array. Better is merge sort and the best performance has shell sort
+| ![Comparisons](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/2_comp.png) | ![Time](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/2_time.png) |
+| :---: | :---: |
+In this case insertion sort and selection sort have worst execution time and comparisons number which coincides for both, as both will perform n^2 comparisons to sort reverse-ordered array. Better is merge sort and the best performance has shell sort
 ##### Random {1,2,3} array
-Execution time and comparisons number of this experiment corelates with the results of random array. However, for given array sizes, shell sort is always the best and performs better than merge sort. Insertion sort is the 3rd best and the worst one is selection sort.
+| ![Comparisons](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/3_comp.png) | ![Time](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/3_time.png) |
+| :---: | :---: |
+Execution time and comparisons number of this experiment correlates with the results of random array. However, for given array sizes, shell sort is always the best and performs better than merge sort. Insertion sort is the 3rd best and the worst one is selection sort.
 
 
 ## Conclusion
-So selection sort performs in each experiment the largest number of comparisons and works for the longest period of time. Insertion sort's performance is the best only in case the array is already sorted. In most of the other cases merge sort and shell sort are significantly better than previous two and usually are close one from another. However, merge sort becomes better since some array size (in the experiment conducted this array size was ~2^12) meanwhile comparisons of shell sort increasingly augments. In the same time, shell sort performs better for arrays with many repetitive elements.
-
-## Run experiment
-If you want to reproduce the experiment on your machine, follow the instructions bellow.
-
-Create build folder and run `cmake` and than `make` from there. This will create C++ executable file called **sort** in **bin/** directory. You can then run this executable. This will print experiments results to the console output and generate `.txt` file in project root that will contain formated data -- experiments outcome. Run following commands:
-``` sh
-$ mkdir build && cd build
-$ cmake .. -G"Unix Makefiles"
-$ make
-$ cd ..
-$ ./bin/sort
-```
-
-You can also run `visualize.py` to generate graphs from data in `.txt`. First create virtual environement (optional) and install **matplotlib**; then run python program to generate graphs. Commands (assuming that you've done previous step -- you've generated `.txt` file with experiments data and your currently directory is project root):
-``` sh
-$ python3 -m venv venv
-$ source ./venv/bin/activate
-$ pip install matplotlib
-
-$ python3 visualize.py
-```
-You will then see graphs been changed in **graphs/** directory.
-
-Note, that generating graphs requires that you have **graphs/** direcotry created and `.txt` file generated by C++ program in correct format. Otherwise graphs won't be created.
+So selection sort performs in each experiment the largest number of comparisons and works for the longest period of time. Insertion sort's performance is the best only in case the array is already sorted. In most of the other cases merge sort and shell sort are significantly better than previous two and usually are close one to another. However, for random array, merge sort becomes better than shell sort starting from some array size (in the experiment conducted this array size was ~2^12) meanwhile comparisons of shell sort increasingly augments. In the same time, shell sort performs better for arrays with many repetitive elements.
 
 ## Author
 Yaroslav Revera, UCU CS student

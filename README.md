@@ -11,8 +11,14 @@ Each of the 4 algorithms was ran in all of the 4 cases mentioned above for array
 
 The result of the experiments are graphs, built with **matplotlib**
 
-## Run experiment
-If you want to reproduce the experiment on your machine, follow the instructions bellow.
+## Installation / Run experiment
+If you want to reproduce the experiment on your machine, follow the instructions bellow (it is assumed that you have necessary build dependencies and using Linux OS. For other OS you may have to do some extra commands)
+
+Clone repository: 
+```sh
+$ git clone https://github.com/archy-co/imss_sort_algs.git
+$ cd imss_sort_algs
+```
 
 Create build folder and run `cmake` and than `make` from there. This will create C++ executable file called **sort** in **bin/** directory. You can then run this executable. This will print experiments results to the console output and generate `.txt` file in project root that will contain formatted data -- experiments outcome. Run following commands:
 ``` sh
@@ -23,7 +29,7 @@ $ cd ..
 $ ./bin/sort
 ```
 
-You can also run `visualize.py` to generate graphs from data in `.txt`. First create virtual environment (optional) and install **matplotlib**; then run python program to generate graphs. Commands (assuming that you've done previous step -- you've generated `.txt` file with experiments data and your currently directory is project root):
+You can also run `visualize.py` to (re)generate graphs from data in `.txt`. First create virtual environment (optional) and install **matplotlib**; then run python program to generate graphs. Commands (assuming that you've done previous step -- you've generated `.txt` file with experiments outcomes and your currently directory is project root):
 ``` sh
 $ python3 -m venv venv
 $ source ./venv/bin/activate
