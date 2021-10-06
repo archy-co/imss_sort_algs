@@ -61,9 +61,9 @@ void printRes(const long res[EXPERIMENTS_COUNT][FUNCS_COUNT][2]){
     for(int i = 0; i < FUNCS_COUNT; i++) {
         for(int j = 0; j < EXPERIMENTS_COUNT; j++){
             cout << experiments_names[j] << ": " << endl << "  ";
-            double time_ms = (double) res[j][i][0]/1000;    // convert microseconds to milliseconds
+            double time_ms = (double) res[j][i][0];
             long comparisons = res[j][i][1];
-            cout << sort_algs_names[i] << ":   " << time_ms << " millisecs \t";
+            cout << sort_algs_names[i] << ":   " << time_ms << " microseconds\t";
             cout << comparisons << " comparisons" << endl;
         }
         cout << endl;
