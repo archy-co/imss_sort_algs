@@ -169,19 +169,23 @@ void expsFuncs(long res[EXPERIMENTS_COUNT][FUNCS_COUNT][2], const int size){
 #### Results
 ##### Random array
 | ![Comparisons](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/0_comp.png) | ![Time](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/0_time.png) |
-| :---: | :---: |
+| :----------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
+
 Selection sort is a bit slower than Insertion sort but generally correlates with it. Next, shell sort. Until some array size (in the given experiments until ~2^12) it has less comparisons and has better execution time then merge sort, but since array size = ~2^12 merge sort becomes better and shell sort increases more and more.
 ##### Sorted array
 | ![Comparisons](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/1_comp.png) | ![Time](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/1_time.png) |
-| :---: | :---: |
+| :----------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
+
 Insertion sort always preforms the best in this case, because it has least comparisons and best execution time. For arrays of size < 2^8 its execution time is is zero microseconds when run on the diven machine. Next, shell sort -- it is based on insertion sort so it is also reasonably fast and is 2nd least among all 4 algorithms in time and comparisons number. Then goes merge sort and the worst is selection sort.
 ##### Reverse-sorted array
 | ![Comparisons](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/2_comp.png) | ![Time](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/2_time.png) |
-| :---: | :---: |
+| :----------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
+
 In this case insertion sort and selection sort have worst execution time and comparisons number which coincides for both, as both will perform n^2 comparisons to sort reverse-ordered array. Better is merge sort and the best performance has shell sort
 ##### Random {1,2,3} array
 | ![Comparisons](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/3_comp.png) | ![Time](https://raw.githubusercontent.com/archy-co/imss_sort_algs/main/graphs/3_time.png) |
-| :---: | :---: |
+| :----------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
+
 Execution time and comparisons number of this experiment correlates with the results of random array. However, for given array sizes, shell sort is always the best and performs better than merge sort. Insertion sort is the 3rd best and the worst one is selection sort.
 
 
